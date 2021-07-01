@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>9006a9bf-cb8f-4397-93b7-628a44af5c44</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Client\JSPMBlazorHostedWASM.Client.csproj" />
+    <ProjectReference Include="..\Shared\JSPMBlazorHostedWASM.Shared.csproj" />
+  </ItemGroup>
+
+
+</Project>

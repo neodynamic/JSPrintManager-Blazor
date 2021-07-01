@@ -1,0 +1,123 @@
+﻿@page "/print-raw-commands"
+@inject JSPrintManager JSPrintManager
+    
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center">
+                <i class="fa fa-barcode" />&nbsp;Print Raw Commands
+            </h2>
+            <hr />
+        </div>
+    </div>
+
+@if (JSPrintManager.Printers == null)
+{
+    <div class="spinner-border text-info" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <strong><em>Getting printers...</em></strong>
+}
+else
+{
+    <p><strong>Select an Installed Printer</strong></p>
+    <EditForm Model="@MyPrinter">
+        <InputSelect @bind-Value="MyPrinter.PrinterName" class="form-control form-control-sm">
+            @foreach (var p in JSPrintManager.Printers)
+                {
+                <option value="@p">@p</option>
+                }
+        </InputSelect>
+    </EditForm>
+
+    <div class="row">
+        <div class="col-md-12">
+            <EditForm Model="@MyCPJ">
+
+                <strong>Enter the raw printer commands</strong>
+                <div class="alert alert-warning">
+                    <small>
+                        Enter the printer's commands you want to send and is supported by the specified printer (e.g. ESC/POS, ZPL, EPL, etc).
+                        <br />
+                        For non-printable characters, use the JS hex notation (e.g. \x0D for carriage return, \x1B for ESC)
+                        <br />
+                        <strong>Refer to your target printer programming manual to know how to write the raw commands!</strong>
+                    </small>
+                </div>
+                <div>
+                    <small>
+                        <strong>Predefined Samples:</strong>
+                    </small>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-light btn-sm" @onclick="@(() => SetSampleRawCommands("zpl"))">
+                        <i class="fa fa-arrow-circle-down" /> Zebra ZPL
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-light btn-sm" @onclick="@(() => SetSampleRawCommands("epl"))">
+                        <i class="fa fa-arrow-circle-down" /> Zebra EPL
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-light btn-sm" @onclick="@(() => SetSampleRawCommands("escpos"))">
+                        <i class="fa fa-arrow-circle-down" /> EPSON ESC/POS
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-light btn-sm" @onclick="@(() => SetSampleRawCommands("ipl"))">
+                        <i class="fa fa-arrow-circle-down" /> Intermec IPL
+                    </button>
+                    &nbsp;&nbsp;
+                    <button type="button" class="btn btn-light btn-sm" @onclick="@(() => SetSampleRawCommands("dpl"))">
+                        <i class="fa fa-arrow-circle-down" /> Datamax DPL
+                    </button>
+                </div>
+                <InputTextArea @bind-Value="MyCPJ.PrinterCommands" rows="10" class="form-control form-control-sm text-monospace" />
+                <br />
+            </EditForm>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <div class="text-center">
+                <button class="btn btn-success btn-lg" @onclick="DoPrinting">
+                    <i class="fa fa-print" /> Print Now...
+                </button>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+@code {
+
+
+
+    protected override void OnInitialized()
+    {
+        JSPrintManager.OnGetPrinters += () => StateHasChanged();
+
+        base.OnInitialized();
+    }
+
+
+    private void SetSampleRawCommands(string printerLang)
+    {
+        if (printerLang == "zpl") MyCPJ.PrinterCommands = "^XA^FO30,40^ADN,36,20^FDZPL Printed from JSPrintManager^FS^FO30,70^BY4^B3N,,200^FD12345678^FS^XZ";
+        else if (printerLang == "epl") MyCPJ.PrinterCommands = "\x0AN\x0AQ609,24\x0Aq784\x0AA170,5,0,1,5,5,N,\"EPL Printed from JSPrintManager\"\x0AB170,50,0,3C,2,6,120,B,\"BCP-1234\"\x0AP1\x0A";
+        else if (printerLang == "escpos") MyCPJ.PrinterCommands = "\x1b@\x1bE\x01ESC POS Printed from JSPrintManager\x1bd\x01\x1dk\x04987654321\x00\x1bd\x01987654321\x1dV\x41\x03";
+        else if (printerLang == "ipl") MyCPJ.PrinterCommands = "<STX><ESC>C<ETX><STX><ESC>P<ETX><STX>E4;F4<ETX><STX>H0;o200,100;f0;c25;h20;w20;d0,30<ETX><STX>L1;o200,150;f0;l575;w5<ETX><STX>B2;o200,200;c0,0;h100;w2;i1;d0,10<ETX><STX>I2;h1;w1;c20<ETX><STX>R<ETX><STX><ESC>E4<ETX><STX><CAN><ETX><STX>IPL Printed from JSPrintManager<CR><ETX><STX>SAMPLE<ETX><STX><ETB><ETX>";
+        else if (printerLang == "dpl") MyCPJ.PrinterCommands = "\x02L\x0dH07\x0dD11\x0d191100801000025DPL Printed from JSPrintManager\x0d1a6210000000050590PCS\x0dE\x0d";
+    }
+
+    private ClientPrintJob MyCPJ { get; set; } = new();
+    private InstalledPrinter MyPrinter { get; set; } = new();
+
+    private void DoPrinting()
+    {
+        // set target printer
+        MyCPJ.ClientPrinter = MyPrinter;
+        // Send job to the client!
+        JSPrintManager.SendClientPrintJob(MyCPJ);
+    }
+}

@@ -1,0 +1,68 @@
+﻿@page "/"
+@inject JSPrintManager JSPrintManager
+
+<h1>JSPrintManager for Blazor</h1>
+
+@if (JSPrintManager.Status == JSPMWSStatus.Open)
+{
+<h2>
+    <small>
+        <em>Print Commands &amp; Files, Manage Printers &amp; Scan Docs from Blazor!</em>
+    </small>
+</h2>
+<p>Please try any of the demos available on the left pane...</p>
+}
+else if (JSPrintManager.Status == JSPMWSStatus.WaitingForUserResponse)
+{
+    <div class="spinner-border text-danger" role="status">
+        <span class="sr-only">Waiting for user response...</span>
+    </div>
+    <strong><em>Waiting for user response...</em></strong>
+}
+else if (JSPrintManager.Status == JSPMWSStatus.Blocked)
+{
+    <div class="alert alert-danger text-center">
+        <h2>This site is blocked!</h2>
+        <hr />
+        This website is <strong>blocked and cannot print through JSPrintManager</strong>
+        <br />
+        <br />
+    </div>
+}
+else if (JSPrintManager.Status == JSPMWSStatus.Closed)
+{
+    <div>
+        <h2>Download &amp; Install JSPM Client App</h2>
+        <hr />
+        It seems that <strong>JSPM Client App is not installed or not running</strong> in this machine!
+        <br />
+        <br />
+        <strong>JSPM Client App</strong> is a small utility (
+        <strong>
+            <em>without any dependencies</em>
+        </strong>
+        ) that handles all the <strong>Print Jobs</strong> and runs on <strong>Windows, Linux, Mac &amp; Raspberry Pi</strong> devices!
+        <br />
+        <br />
+        <div class="text-center">
+            <a href="//neodynamic.com/downloads/jspm" target="_blank" class="btn btn-lg btn-primary center">
+                <i class="fa fa-download" /> Download JSPM Client App...
+            </a>
+        </div>
+        <br />
+        <div class="alert alert-warning">
+            <i class="fa fa-exclamation-circle" /> Browser needs to be restarted after package installation! Firefox-based browser must be closed (all open instances) before installing JSPM utility.
+        </div>
+    </div>
+}
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        JSPrintManager.OnStatusChanged += () => StateHasChanged();
+
+        base.OnInitialized();
+    }
+
+}

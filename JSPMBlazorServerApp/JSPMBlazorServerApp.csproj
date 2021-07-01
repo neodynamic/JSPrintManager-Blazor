@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>JSPMBlazorServerApp</AssemblyName>
+    <RootNamespace>JSPMBlazorServerApp</RootNamespace>
+    <UserSecretsId>8d4aba25-b904-4373-8510-7830b3ac5059</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Neodynamic.Blazor.JSPrintManager" Version="4.0.0"/>
+  </ItemGroup>
+
+</Project>

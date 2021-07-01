@@ -1,0 +1,74 @@
+﻿@inherits LayoutComponentBase
+@inject JSPrintManager JSPrintManager
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            <div>
+                <strong>JSPM </strong><span>WebSocket Status </span>
+
+                @if (JSPrintManager.Status == JSPMWSStatus.Open)
+                {
+                    <span class="badge badge-success">
+                        <i class="fa fa-check" /> Open
+                    </span>
+                }
+                else if (JSPrintManager.Status == JSPMWSStatus.Closed)
+                {
+                    <span class="badge badge-danger">
+                        <i class="fa fa-exclamation-circle" /> Closed!
+                    </span>
+                }
+                else if (JSPrintManager.Status == JSPMWSStatus.Blocked)
+                {
+                    <span class="badge badge-warning">
+                        <i class="fa fa-times-circle" /> This Website is Blocked!
+                    </span>
+                }
+                else if (JSPrintManager.Status == JSPMWSStatus.WaitingForUserResponse)
+                {
+                    <span class="badge badge-warning">
+                        <i class="fa fa-user-circle" /> Waiting for user response...
+                    </span>
+                }
+            </div>
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            JSPrintManager.OnStatusChanged += () =>
+            {
+                if (JSPrintManager.Status == JSPMWSStatus.Open)
+                {
+                    JSPrintManager.TryGetPrinters(); //Get printers...
+
+                JSPrintManager.TryGetPrintersInfo(); //Get printers info...
+
+                JSPrintManager.TryGetScanners(); //Get scanners...
+
+            }
+
+                StateHasChanged();
+            };
+
+            JSPrintManager.Start();
+        }
+
+        base.OnAfterRender(firstRender);
+    }
+
+}

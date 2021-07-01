@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAASGBxHGF1xEycXE1ZVubOygAAAAACAAAAAAAQZgAAAAEAACAAAACimxqID0Fye18dtjX3QaDLs/cXjWAdopNzmqyQzSXinAAAAAAOgAAAAAIAACAAAADs8hfHsdJf7p41Un2boSzQ0ud+K9Ke0YkVTFaFCWiG04AAAACx3pUhMi+DfJ2JxCZPTl2Aiz2DvrknkAsiwDzY553c3HyTzXuL655nb+m4euGjUNwUjgbKYAN3mTmbk08EQ09bq+8UqVfmUPClX7+cXiucOYnHaEcHPt9+518/o82S6J4upz2zwjgCjjmfz35Hk8qJVbyaZEwWBs9z1/uoJMlK9UAAAACAkggLcmgteUp5e7hLpXV2nYncVayA3yoBz9X6w8PhSSJufnLQZ+qcOmfYonzmx/NGgxVG/0pEwC8YYrA7BS++</EncryptedPassword>
+    <_PublishTargetUrl>ftp://waws-prod-dm1-135.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
+    <History>True|2021-07-01T19:29:08.7961796Z;True|2021-06-30T15:14:23.4673854-03:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>06/30/2021 13:57:17</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>06/30/2021 13:57:17</publishTime>
+    </File>
+    <File Include="BlazorDebugProxy/BrowserDebugHost.dll">
+      <publishTime>04/20/2021 22:16:50</publishTime>
+    </File>
+    <File Include="BlazorDebugProxy/BrowserDebugHost.runtimeconfig.json">
+      <publishTime>04/20/2021 22:16:52</publishTime>
+    </File>
+    <File Include="BlazorDebugProxy/BrowserDebugProxy.dll">
+      <publishTime>04/20/2021 22:16:48</publishTime>
+    </File>
+    <File Include="BlazorDebugProxy/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>03/03/2020 09:02:18</publishTime>
+    </File>
+    <File Include="BlazorDebugProxy/Microsoft.CodeAnalysis.dll">
+      <publishTime>03/03/2020 09:00:10</publishTime>
+    </File>
+    <File Include="BlazorDebugProxy/Mono.Cecil.dll">
+      <publishTime>02/19/2020 21:40:34</publishTime>
+    </File>
+    <File Include="BlazorDebugProxy/Mono.Cecil.Pdb.dll">
+      <publishTime>02/19/2020 21:40:36</publishTime>
+    </File>
+    <File Include="BlazorDebugProxy/Mono.Cecil.Rocks.dll">
+      <publishTime>02/19/2020 21:40:36</publishTime>
+    </File>
+    <File Include="BlazorDebugProxy/Newtonsoft.Json.dll">
+      <publishTime>11/09/2019 00:56:44</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Client.dll">
+      <publishTime>07/01/2021 16:02:54</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Client.pdb">
+      <publishTime>07/01/2021 16:02:54</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Server.deps.json">
+      <publishTime>07/01/2021 16:03:16</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Server.dll">
+      <publishTime>07/01/2021 16:03:09</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Server.exe">
+      <publishTime>07/01/2021 16:03:10</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Server.pdb">
+      <publishTime>07/01/2021 16:03:09</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Server.runtimeconfig.json">
+      <publishTime>06/30/2021 14:42:07</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Server.Views.dll">
+      <publishTime>07/01/2021 16:03:13</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Server.Views.pdb">
+      <publishTime>07/01/2021 16:03:13</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Shared.dll">
+      <publishTime>07/01/2021 16:02:34</publishTime>
+    </File>
+    <File Include="JSPMBlazorHostedWASM.Shared.pdb">
+      <publishTime>07/01/2021 16:02:34</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Authorization.dll">
+      <publishTime>04/23/2021 18:29:24</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Components.dll">
+      <publishTime>04/23/2021 18:28:38</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Components.Forms.dll">
+      <publishTime>04/23/2021 18:29:24</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Components.Web.dll">
+      <publishTime>04/23/2021 18:29:30</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Components.WebAssembly.dll">
+      <publishTime>04/23/2021 18:31:30</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Components.WebAssembly.Server.dll">
+      <publishTime>04/23/2021 18:32:02</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Metadata.dll">
+      <publishTime>04/23/2021 18:28:56</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.DependencyInjection.dll">
+      <publishTime>11/26/2020 01:59:12</publishTime>
+    </File>
+    <File Include="Microsoft.JSInterop.dll">
+      <publishTime>04/23/2021 18:28:54</publishTime>
+    </File>
+    <File Include="Microsoft.JSInterop.WebAssembly.dll">
+      <publishTime>04/23/2021 18:28:54</publishTime>
+    </File>
+    <File Include="Neodynamic.Blazor.JSPrintManager.dll">
+      <publishTime>07/01/2021 15:53:57</publishTime>
+    </File>
+    <File Include="Neodynamic.Blazor.JSPrintManager.pdb">
+      <publishTime>07/01/2021 15:54:07</publishTime>
+    </File>
+    <File Include="System.IO.Pipelines.dll">
+      <publishTime>11/26/2020 02:01:10</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>07/01/2021 16:07:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/app.css">
+      <publishTime>06/30/2021 13:57:20</publishTime>
+    </File>
+    <File Include="wwwroot/css/app.css.br">
+      <publishTime>06/30/2021 14:45:12</publishTime>
+    </File>
+    <File Include="wwwroot/css/app.css.gz">
+      <publishTime>06/30/2021 14:49:35</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap/bootstrap.min.css">
+      <publishTime>06/30/2021 13:57:20</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap/bootstrap.min.css.br">
+      <publishTime>06/30/2021 14:45:27</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap/bootstrap.min.css.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap/bootstrap.min.css.map">
+      <publishTime>06/30/2021 13:57:21</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap/bootstrap.min.css.map.br">
+      <publishTime>06/30/2021 14:46:10</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap/bootstrap.min.css.map.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/FONT-LICENSE">
+      <publishTime>06/30/2021 13:57:21</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/FONT-LICENSE.br">
+      <publishTime>06/30/2021 14:45:17</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/FONT-LICENSE.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css">
+      <publishTime>06/30/2021 13:57:21</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css.br">
+      <publishTime>06/30/2021 14:45:17</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css.gz">
+      <publishTime>06/30/2021 14:49:35</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.eot">
+      <publishTime>06/30/2021 13:57:21</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.eot.br">
+      <publishTime>06/30/2021 14:45:18</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.eot.gz">
+      <publishTime>06/30/2021 14:49:35</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.otf">
+      <publishTime>06/30/2021 13:57:21</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.otf.br">
+      <publishTime>06/30/2021 14:45:19</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.otf.gz">
+      <publishTime>06/30/2021 14:49:35</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.svg">
+      <publishTime>06/30/2021 13:57:22</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.svg.br">
+      <publishTime>06/30/2021 14:45:24</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.svg.gz">
+      <publishTime>06/30/2021 14:49:35</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.ttf">
+      <publishTime>06/30/2021 13:57:22</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.ttf.br">
+      <publishTime>06/30/2021 14:45:19</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.ttf.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.woff">
+      <publishTime>06/30/2021 13:57:22</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.woff.br">
+      <publishTime>06/30/2021 14:45:20</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.woff.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/ICON-LICENSE">
+      <publishTime>06/30/2021 13:57:21</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/ICON-LICENSE.br">
+      <publishTime>06/30/2021 14:45:20</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/ICON-LICENSE.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/README.md">
+      <publishTime>06/30/2021 13:57:21</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/README.md.br">
+      <publishTime>06/30/2021 14:45:21</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/README.md.gz">
+      <publishTime>06/30/2021 14:49:35</publishTime>
+    </File>
+    <File Include="wwwroot/favicon.ico">
+      <publishTime>06/30/2021 13:57:20</publishTime>
+    </File>
+    <File Include="wwwroot/favicon.ico.br">
+      <publishTime>06/30/2021 14:45:21</publishTime>
+    </File>
+    <File Include="wwwroot/favicon.ico.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/images/scanning.gif">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/images/scanning.gif.br">
+      <publishTime>06/30/2021 14:45:22</publishTime>
+    </File>
+    <File Include="wwwroot/images/scanning.gif.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/index.html">
+      <publishTime>06/30/2021 14:20:57</publishTime>
+    </File>
+    <File Include="wwwroot/index.html.br">
+      <publishTime>06/30/2021 14:45:22</publishTime>
+    </File>
+    <File Include="wwwroot/index.html.gz">
+      <publishTime>06/30/2021 14:49:35</publishTime>
+    </File>
+    <File Include="wwwroot/JSPMBlazorHostedWASM.Client.styles.css">
+      <publishTime>06/30/2021 14:40:46</publishTime>
+    </File>
+    <File Include="wwwroot/JSPMBlazorHostedWASM.Client.styles.css.br">
+      <publishTime>06/30/2021 14:46:47</publishTime>
+    </File>
+    <File Include="wwwroot/JSPMBlazorHostedWASM.Client.styles.css.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/_content/Neodynamic.Blazor.JSPrintManager/JSPrintManagerBlazor.js">
+      <publishTime>06/30/2021 15:37:42</publishTime>
+    </File>
+    <File Include="wwwroot/_content/Neodynamic.Blazor.JSPrintManager/JSPrintManagerBlazor.js.br">
+      <publishTime>07/01/2021 16:07:03</publishTime>
+    </File>
+    <File Include="wwwroot/_content/Neodynamic.Blazor.JSPrintManager/JSPrintManagerBlazor.js.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/blazor.boot.json">
+      <publishTime>07/01/2021 16:06:40</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/blazor.boot.json.br">
+      <publishTime>07/01/2021 16:06:42</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/blazor.boot.json.gz">
+      <publishTime>07/01/2021 16:07:38</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/blazor.webassembly.js">
+      <publishTime>04/23/2021 18:29:24</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/blazor.webassembly.js.br">
+      <publishTime>06/30/2021 14:45:17</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/blazor.webassembly.js.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/dotnet.5.0.6.js">
+      <publishTime>04/20/2021 22:36:06</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/dotnet.5.0.6.js.br">
+      <publishTime>06/30/2021 14:46:47</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/dotnet.5.0.6.js.gz">
+      <publishTime>06/30/2021 14:49:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/dotnet.timezones.blat">
+      <publishTime>04/20/2021 22:35:42</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/dotnet.timezones.blat.br">
+      <publishTime>06/30/2021 14:45:46</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/dotnet.timezones.blat.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/dotnet.wasm">
+      <publishTime>04/20/2021 22:36:06</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/dotnet.wasm.br">
+      <publishTime>06/30/2021 14:48:06</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/dotnet.wasm.gz">
+      <publishTime>06/30/2021 14:49:39</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt.dat">
+      <publishTime>04/20/2021 22:36:06</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt.dat.br">
+      <publishTime>06/30/2021 14:48:54</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt.dat.gz">
+      <publishTime>06/30/2021 14:49:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt_CJK.dat">
+      <publishTime>04/20/2021 22:36:06</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt_CJK.dat.br">
+      <publishTime>06/30/2021 14:49:19</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt_CJK.dat.gz">
+      <publishTime>06/30/2021 14:49:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt_EFIGS.dat">
+      <publishTime>04/20/2021 22:36:06</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt_EFIGS.dat.br">
+      <publishTime>06/30/2021 14:49:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt_EFIGS.dat.gz">
+      <publishTime>06/30/2021 14:49:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt_no_CJK.dat">
+      <publishTime>04/20/2021 22:36:06</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt_no_CJK.dat.br">
+      <publishTime>06/30/2021 14:46:41</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/icudt_no_CJK.dat.gz">
+      <publishTime>06/30/2021 14:49:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/JSPMBlazorHostedWASM.Client.dll">
+      <publishTime>07/01/2021 16:06:31</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/JSPMBlazorHostedWASM.Client.dll.br">
+      <publishTime>07/01/2021 16:06:51</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/JSPMBlazorHostedWASM.Client.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/JSPMBlazorHostedWASM.Shared.dll">
+      <publishTime>07/01/2021 16:06:31</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/JSPMBlazorHostedWASM.Shared.dll.br">
+      <publishTime>07/01/2021 16:06:49</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/JSPMBlazorHostedWASM.Shared.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.dll.br">
+      <publishTime>07/01/2021 16:06:58</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.Forms.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.Forms.dll.br">
+      <publishTime>07/01/2021 16:06:59</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.Forms.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.Web.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.Web.dll.br">
+      <publishTime>07/01/2021 16:06:44</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.Web.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.WebAssembly.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.WebAssembly.dll.br">
+      <publishTime>07/01/2021 16:06:45</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.AspNetCore.Components.WebAssembly.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Configuration.Abstractions.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Configuration.Abstractions.dll.br">
+      <publishTime>07/01/2021 16:06:46</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Configuration.Abstractions.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Configuration.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Configuration.dll.br">
+      <publishTime>07/01/2021 16:06:45</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Configuration.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Configuration.Json.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Configuration.Json.dll.br">
+      <publishTime>07/01/2021 16:06:46</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Configuration.Json.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.DependencyInjection.Abstractions.dll">
+      <publishTime>07/01/2021 16:06:31</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.DependencyInjection.Abstractions.dll.br">
+      <publishTime>07/01/2021 16:06:47</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.DependencyInjection.Abstractions.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.DependencyInjection.dll">
+      <publishTime>07/01/2021 16:06:38</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.DependencyInjection.dll.br">
+      <publishTime>07/01/2021 16:06:46</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.DependencyInjection.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Logging.Abstractions.dll">
+      <publishTime>07/01/2021 16:06:31</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Logging.Abstractions.dll.br">
+      <publishTime>07/01/2021 16:06:47</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Logging.Abstractions.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Logging.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Logging.dll.br">
+      <publishTime>07/01/2021 16:06:47</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Logging.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Options.dll">
+      <publishTime>07/01/2021 16:06:32</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Options.dll.br">
+      <publishTime>07/01/2021 16:06:47</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Options.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Primitives.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Primitives.dll.br">
+      <publishTime>07/01/2021 16:06:48</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.Extensions.Primitives.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.JSInterop.dll">
+      <publishTime>07/01/2021 16:06:30</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.JSInterop.dll.br">
+      <publishTime>07/01/2021 16:06:48</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.JSInterop.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.JSInterop.WebAssembly.dll">
+      <publishTime>07/01/2021 16:06:30</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.JSInterop.WebAssembly.dll.br">
+      <publishTime>07/01/2021 16:06:48</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Microsoft.JSInterop.WebAssembly.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Neodynamic.Blazor.JSPrintManager.dll">
+      <publishTime>07/01/2021 16:06:31</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Neodynamic.Blazor.JSPrintManager.dll.br">
+      <publishTime>07/01/2021 16:06:50</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/Neodynamic.Blazor.JSPrintManager.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.Concurrent.dll">
+      <publishTime>07/01/2021 16:06:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.Concurrent.dll.br">
+      <publishTime>07/01/2021 16:06:52</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.Concurrent.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.dll">
+      <publishTime>07/01/2021 16:06:32</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.dll.br">
+      <publishTime>07/01/2021 16:06:42</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.Immutable.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.Immutable.dll.br">
+      <publishTime>07/01/2021 16:06:53</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.Immutable.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.NonGeneric.dll">
+      <publishTime>07/01/2021 16:06:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.NonGeneric.dll.br">
+      <publishTime>07/01/2021 16:06:41</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.NonGeneric.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.Specialized.dll">
+      <publishTime>07/01/2021 16:06:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.Specialized.dll.br">
+      <publishTime>07/01/2021 16:06:42</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Collections.Specialized.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ComponentModel.dll">
+      <publishTime>07/01/2021 16:06:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ComponentModel.dll.br">
+      <publishTime>07/01/2021 16:06:43</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ComponentModel.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ComponentModel.Primitives.dll">
+      <publishTime>07/01/2021 16:06:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ComponentModel.Primitives.dll.br">
+      <publishTime>07/01/2021 16:06:42</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ComponentModel.Primitives.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ComponentModel.TypeConverter.dll">
+      <publishTime>07/01/2021 16:06:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ComponentModel.TypeConverter.dll.br">
+      <publishTime>07/01/2021 16:06:43</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ComponentModel.TypeConverter.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Console.dll">
+      <publishTime>07/01/2021 16:06:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Console.dll.br">
+      <publishTime>07/01/2021 16:06:44</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Console.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.IO.Pipelines.dll">
+      <publishTime>07/01/2021 16:06:31</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.IO.Pipelines.dll.br">
+      <publishTime>07/01/2021 16:06:49</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.IO.Pipelines.dll.gz">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Linq.dll">
+      <publishTime>07/01/2021 16:06:32</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Linq.dll.br">
+      <publishTime>07/01/2021 16:07:06</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Linq.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Linq.Expressions.dll">
+      <publishTime>07/01/2021 16:06:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Linq.Expressions.dll.br">
+      <publishTime>07/01/2021 16:07:04</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Linq.Expressions.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Memory.dll">
+      <publishTime>07/01/2021 16:06:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Memory.dll.br">
+      <publishTime>07/01/2021 16:07:07</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Memory.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Net.Http.dll">
+      <publishTime>07/01/2021 16:06:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Net.Http.dll.br">
+      <publishTime>07/01/2021 16:07:07</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Net.Http.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Net.Primitives.dll">
+      <publishTime>07/01/2021 16:06:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Net.Primitives.dll.br">
+      <publishTime>07/01/2021 16:07:07</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Net.Primitives.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ObjectModel.dll">
+      <publishTime>07/01/2021 16:06:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ObjectModel.dll.br">
+      <publishTime>07/01/2021 16:07:08</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.ObjectModel.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Private.CoreLib.dll">
+      <publishTime>07/01/2021 16:06:34</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Private.CoreLib.dll.br">
+      <publishTime>07/01/2021 16:07:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Private.CoreLib.dll.gz">
+      <publishTime>07/01/2021 16:07:38</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Private.Runtime.InteropServices.JavaScript.dll">
+      <publishTime>07/01/2021 16:06:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Private.Runtime.InteropServices.JavaScript.dll.br">
+      <publishTime>07/01/2021 16:07:08</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Private.Runtime.InteropServices.JavaScript.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Private.Uri.dll">
+      <publishTime>07/01/2021 16:06:35</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Private.Uri.dll.br">
+      <publishTime>07/01/2021 16:07:11</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Private.Uri.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>07/01/2021 16:06:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Runtime.CompilerServices.Unsafe.dll.br">
+      <publishTime>07/01/2021 16:06:52</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Runtime.CompilerServices.Unsafe.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Runtime.InteropServices.RuntimeInformation.dll">
+      <publishTime>07/01/2021 16:06:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Runtime.InteropServices.RuntimeInformation.dll.br">
+      <publishTime>07/01/2021 16:06:53</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Runtime.InteropServices.RuntimeInformation.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Security.Cryptography.Algorithms.dll">
+      <publishTime>07/01/2021 16:06:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Security.Cryptography.Algorithms.dll.br">
+      <publishTime>07/01/2021 16:06:56</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Security.Cryptography.Algorithms.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Security.Cryptography.Primitives.dll">
+      <publishTime>07/01/2021 16:06:36</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Security.Cryptography.Primitives.dll.br">
+      <publishTime>07/01/2021 16:06:53</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Security.Cryptography.Primitives.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Text.Encodings.Web.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Text.Encodings.Web.dll.br">
+      <publishTime>07/01/2021 16:06:53</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Text.Encodings.Web.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Text.Json.dll">
+      <publishTime>07/01/2021 16:06:37</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Text.Json.dll.br">
+      <publishTime>07/01/2021 16:06:58</publishTime>
+    </File>
+    <File Include="wwwroot/_framework/System.Text.Json.dll.gz">
+      <publishTime>07/01/2021 16:07:37</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

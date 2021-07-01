@@ -1,0 +1,267 @@
+﻿@page "/scan-docs"
+@using System
+@inject JSPrintManager JSPrintManager
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">
+            <i class="fa fa-crosshairs" />&nbsp;Scan Docs &amp; Images
+        </h2>
+        <hr />
+    </div>
+</div>
+
+@if (NumOfScannerDevices == -1)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <div class="spinner-border text-info" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <strong><em>Getting scanner devices...</em></strong>
+            </div>
+        </div>
+    </div>
+}
+else if (NumOfScannerDevices == 0)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <div class="alert alert-danger">No scanner devices were detected on this system.</div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <EditForm Model="@MyCSJ">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Scanner:</label>
+
+                            <InputSelect @bind-Value="MyCSJ.ScannerName" class="form-control form-control-sm">
+                                <option>Select a device...</option>
+                                @foreach (var s in JSPrintManager.Scanners)
+                                    {
+                                    <option value="@s">@s</option>
+                                    }
+                            </InputSelect>
+
+                        </div>
+                        <div class="col-md-2">
+                            <label>Resolution (DPI):</label>
+                            <InputNumber @bind-Value="MyCSJ.Resolution" class="form-control form-control-sm" />
+                        </div>
+                        <div class="col-md-2">
+                            <label>Pixel Mode:</label>
+                            <InputSelect @bind-Value="MyCSJ.PixelMode" class="form-control form-control-sm">
+                                @foreach (var pm in Enum.GetValues(typeof(PixelMode)))
+                                    {
+                                    <option value="@pm">@pm</option>
+                                    }
+                            </InputSelect>
+                        </div>
+                        <div class="col-md-2">
+                            <label>Image Format:</label>
+                            <InputSelect @bind-Value="MyCSJ.ImageFormat" class="form-control form-control-sm">
+                                @foreach (var imgFmt in Enum.GetValues(typeof(ScannerImageFormatOutput)))
+                                    {
+                                    <option value="@imgFmt">@imgFmt</option>
+                                    }
+                            </InputSelect>
+                        </div>
+                        <div class="col-md-3">
+                            <span class="badge badge-info">Windows Only</span>
+                            <br />
+                            <label>
+                                Enable Duplex
+                                <InputCheckbox @bind-Value="MyCSJ.EnableDuplex" />
+                            </label>
+                            <br />
+                            <label>
+                                Enable Feeder (ADF)
+                                <InputCheckbox @bind-Value="MyCSJ.EnableFeeder" />
+                            </label>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Feeder Count:</span>
+                                </div>
+                                <InputNumber @bind-Value="MyCSJ.FeederCount" class="form-control" aria-label="Feeder Count" aria-describedby="basic-addon1" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br />
+                            <div class="text-center">
+                                <button class="btn btn-success btn-lg" @onclick="DoScanning">
+                                    <i class="fa fa-crosshairs" /> Scan Now...
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br /><br />
+
+                    @if (ScanningState == 1)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <img src="/images/scanning.gif" />
+                                    <br />
+                                    <strong>Scanning...</strong>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (ScanningState == 2)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <div class="alert alert-danger"><strong>ERROR:</strong> @LastError</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (ScanningState == 0 && ScannedImages.Count > 0)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-secondary">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-info" @onclick="PrevImage"><i class="fa fa-chevron-left"></i></button>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <h4>Scan result: @(currentImageIndex + 1) of @(ScannedImages.Count)</h4>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-info pull-right" @onclick="NextImage"><i class="fa fa-chevron-right"></i></button>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-12  text-center">
+                                            <img src="@(ScannedImages[currentImageIndex])" style="width: @(Math.Round(96.0 / (double)MyCSJ.Resolution * 100.0))%; height: auto" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </EditForm>
+        </div>
+    </div>
+
+}
+
+
+
+@code {
+
+
+    /* =====================================================================================
+
+    VERY IMPORTANT!!!
+
+    SignalR message limit is 32KB by default and scanning images that will be serialized to
+    Base64 string will require modifying that limitation. In this sample we have removed it
+    by setting the MaximumReceiveMessageSize prop to NULL in the Startup.cs file.
+
+    ===================================================================================== */
+
+
+    protected override void OnInitialized()
+    {
+
+        if (JSPrintManager.Scanners != null && JSPrintManager.Scanners.Length > 0)
+            NumOfScannerDevices = JSPrintManager.Scanners.Length;
+
+        JSPrintManager.OnGetScanners += () =>
+        {
+
+            NumOfScannerDevices = 0;
+            if (JSPrintManager.Scanners != null && JSPrintManager.Scanners.Length > 0)
+                NumOfScannerDevices = JSPrintManager.Scanners.Length;
+
+            StateHasChanged();
+        };
+
+        JSPrintManager.OnClientScanJobStatusChanged += () =>
+        {
+            var ScanningResult = JSPrintManager.ClientScanJobStatusCache.Where(jobStatus => jobStatus.Id == MyCSJ.Id).Last<ScanJobStatus>();
+
+            if (ScanningResult.IsError)
+            {
+                ScanningState = 2;
+                LastError = ScanningResult.Data;
+            }
+            else if (ScanningResult.IsLast)
+            {
+                ScanningState = 0;
+            }
+            else
+            {
+                ScannedImages.Add(ScanningResult.Data);
+            }
+
+            StateHasChanged();
+        };
+
+        base.OnInitialized();
+    }
+
+    private ClientScanJob MyCSJ { get; set; } = new();
+
+    private void DoScanning()
+    {
+        if (string.IsNullOrWhiteSpace(MyCSJ.ScannerName)) return;
+
+        // Clean Scan Job Status cache...
+        JSPrintManager.ClientScanJobStatusCache.Clear();
+        // Clean scanned images cache...
+        ScannedImages.Clear();
+
+        // Set scanning state
+        ScanningState = 1;
+        StateHasChanged();
+
+        // gen unique id for tracking job status
+        MyCSJ.GenerateUniqueId();
+
+        // Send job to the client!
+        JSPrintManager.SendClientScanJob(MyCSJ);
+    }
+
+    private int NumOfScannerDevices = -1;
+    private int ScanningState = 0; // 0 = finished, 1 = scanning, 2 = error
+    private int currentImageIndex = 0;
+    private List<string> ScannedImages = new List<string>();
+
+    private void NextImage()
+    {
+        if (currentImageIndex < ScannedImages.Count - 1)
+        {
+            currentImageIndex++;
+            StateHasChanged();
+        }
+    }
+
+    private void PrevImage()
+    {
+        if (currentImageIndex > 0)
+        {
+            currentImageIndex--;
+            StateHasChanged();
+        }
+    }
+
+    private string LastError = "";
+}

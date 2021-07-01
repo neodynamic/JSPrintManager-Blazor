@@ -1,0 +1,328 @@
+﻿@page "/print-pdf"
+@using System
+@using System.IO
+@inject JSPrintManager JSPrintManager
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">
+            <i class="fa fa-file-pdf-o" />&nbsp;Advanced PDF Printing
+        </h2>
+        <hr />
+    </div>
+</div>
+
+@if (JSPrintManager.PrintersInfo == null)
+{
+    <div class="spinner-border text-info" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <strong><em>Getting printers...</em></strong>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <EditForm Model="@MyCPJ">
+                <strong>Select the PDF File to print</strong>
+                <TabControl>
+                    <TabPage Text="Local PDF File">
+                        <br />
+                        <InputFile OnChange="@LoadFiles" class="form-control-file" />
+                        <br />
+                        @if (isLoading)
+                        {
+                            <p><em><small>Loading files...</small></em></p>
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: @(loadingStep)%;" aria-valuenow="@(loadingStep)" aria-valuemin="0" aria-valuemax="100">@(loadingStep)%</div>
+                            </div>
+                        }
+                    </TabPage>
+                    <TabPage Text="PDF File from URL">
+                        <br />
+                        URL for PDF File
+                        <div>
+                            <small>
+                                <strong>Predefined Sample:</strong>
+                            </small>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-light btn-sm" @onclick="@(() => SetFilePath("https://neodynamic.com/temp/mixed-page-orientation.pdf"))">
+                                <i class="fa fa-arrow-circle-down" /> mixed-page-orientation.pdf
+                            </button>
+                        </div>
+                        <InputText Value="@MyFilePath" ValueExpression="@(() => MyFilePath)" ValueChanged="@SetFilePath" class="form-control form-control-sm text-monospace" />
+                    </TabPage>
+                </TabControl>
+            </EditForm>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <div class="alert alert-info">
+                <strong>Target Printer &amp; PDF Printing Settings</strong>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Printer:</label>
+            <EditForm Model="@MyPrinter">
+                <InputSelect Value="MyPrinter.PrinterName" ValueChanged="@((string s)=>PrinterChanged(s))" ValueExpression="@(()=>MyPrinter.PrinterName)" class="form-control form-control-sm">
+                    @foreach (var p in JSPrintManager.PrintersInfo)
+                    {
+                        <option value="@p.Name">@p.Name</option>
+                    }
+                </InputSelect>
+            </EditForm>
+        </div>
+        <div class="col-md-3">
+            <label>Tray:</label>
+            <EditForm Model="@MyPrinter">
+                <InputSelect @bind-Value="MyPrinter.TrayName" class="form-control form-control-sm">
+                    @if (trays != null)
+                        {
+                        @foreach (var t in trays)
+                            {
+                            <option value="@t">@t</option>
+                            }
+                        }
+                </InputSelect>
+            </EditForm>
+        </div>
+        <div class="col-md-3">
+            <label>Paper:</label>
+            <EditForm Model="@MyPrinter">
+                <InputSelect @bind-Value="MyPrinter.PaperName" class="form-control form-control-sm">
+                    @if (papers != null)
+                        {
+                        @foreach (var p in papers)
+                            {
+                            <option value="@p">@p</option>
+                            }
+                        }
+                </InputSelect>
+            </EditForm>
+        </div>
+        <div class="col-md-3">
+            <label>Print Rotation (Clockwise):</label>
+            <EditForm Model="@MyPdfFile">
+                <InputSelect @bind-Value="MyPdfFile.PrintRotation" class="form-control form-control-sm">
+                    @foreach (var pr in Enum.GetValues(typeof(PrintRotation)))
+                        {
+                        <option value="@pr">@pr</option>
+                        }
+                </InputSelect>
+            </EditForm>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <label>Pages Range: [e.g. 1,2,3,10-13]</label>
+            <EditForm Model="@MyPdfFile">
+                <InputText @bind-Value="MyPdfFile.PrintRange" class="form-control form-control-sm" />
+            </EditForm>
+        </div>
+        <div class="col-md-3">
+            <EditForm Model="@MyPdfFile">
+                <label>
+                    Auto Center
+                    <InputCheckbox @bind-Value="MyPdfFile.AutoCenter" />
+                </label>
+            </EditForm>
+
+            <EditForm Model="@MyPdfFile">
+                <label>
+                    Auto Rotate
+                    <InputCheckbox @bind-Value="MyPdfFile.AutoRotate" />
+                </label>
+            </EditForm>
+        </div>
+        <div class="col-md-3">
+            <label class="@(builtInDuplexSupport ? "" : "propDisabled")">
+                Use Driver Duplex Printing
+                <input type="checkbox" @bind="useDriverDuplex" disabled="@(!builtInDuplexSupport)" />
+            </label>
+
+            <EditForm Model="@MyPdfFile">
+                <label>
+                    Use Manual Duplex Printing
+                    <InputCheckbox @bind-Value="MyPdfFile.ManualDuplex" />
+                </label>
+            </EditForm>
+
+        </div>
+        <div class="col-md-3">
+            <label>Page Sizing:</label>
+            <EditForm Model="@MyPdfFile">
+                <InputSelect @bind-Value="MyPdfFile.PageSizing" class="form-control form-control-sm">
+                    @foreach (var pr in Enum.GetValues(typeof(Sizing)))
+                        {
+                        <option value="@pr">@pr</option>
+                        }
+                </InputSelect>
+            </EditForm>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            <EditForm Model="@MyPdfFile">
+                <label>
+                    Print In Reverse Order
+                    <InputCheckbox @bind-Value="MyPdfFile.PrintInReverseOrder" />
+                </label>
+            </EditForm>
+        </div>
+        <div class="col-md-3">
+            <EditForm Model="@MyPdfFile">
+                <label>
+                    Print Annotations
+                    <InputCheckbox @bind-Value="MyPdfFile.PrintAnnotations" />
+                </label>
+            </EditForm>
+        </div>
+        <div class="col-md-3">
+            <EditForm Model="@MyPdfFile">
+                <label>
+                    Print As Grayscale
+                    <InputCheckbox @bind-Value="MyPdfFile.PrintAsGrayscale" />
+                </label>
+            </EditForm>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <div class="text-center">
+                <button class="btn btn-success btn-lg" @onclick="DoPrinting">
+                    <i class="fa fa-print" /> Print Now...
+                </button>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        JSPrintManager.OnGetPrintersInfo += () => StateHasChanged();
+
+        base.OnInitialized();
+    }
+
+    private string[] trays = null;
+    private string[] papers = null;
+    private bool builtInDuplexSupport = false;
+    private bool useDriverDuplex = false;
+
+    private void PrinterChanged(string printerName)
+    {
+        trays = JSPrintManager.PrintersInfo.FirstOrDefault(p => p.Name == printerName).Trays;
+        papers = JSPrintManager.PrintersInfo.FirstOrDefault(p => p.Name == printerName).Papers;
+        builtInDuplexSupport = JSPrintManager.PrintersInfo.FirstOrDefault(p => p.Name == printerName).Duplex;
+        MyPrinter.PrinterName = printerName;
+    }
+
+    private ClientPrintJob MyCPJ { get; set; } = new();
+    private InstalledPrinter MyPrinter { get; set; } = new();
+    private PrintFilePDF MyPdfFile { get; set; } = new();
+
+    private void DoPrinting()
+    {
+        // Set built-in duplex printing if required
+        if (builtInDuplexSupport)
+        {
+            MyPrinter.Duplex = useDriverDuplex ? Duplex.Default : Duplex.Simplex;
+        }
+
+        // set target printer
+        MyCPJ.ClientPrinter = MyPrinter;
+
+        // set pdf file source...
+        if (FileFromUrl)
+        {
+            MyPdfFile.FileContentType = FileSourceType.URL;
+            MyPdfFile.FileContent = MyFilePath;
+            MyPdfFile.FileName = MyFilePath.Substring(MyFilePath.LastIndexOf('/') + 1);
+        }
+        else
+        {
+            foreach (var fileEntry in loadedFiles)
+            {
+                MyPdfFile.FileContentType = FileSourceType.Base64;
+                MyPdfFile.FileContent = fileEntry.Value;
+                MyPdfFile.FileName = fileEntry.Key;
+            }
+        }
+
+        // Add the pdf file to the print job
+        MyCPJ.Files.Add(MyPdfFile);
+        // Send job to the client!
+        JSPrintManager.SendClientPrintJob(MyCPJ);
+    }
+
+    #region File Source Handling
+    private bool FileFromUrl = false;
+
+    private string MyFilePath { get; set; }
+
+    private void SetFilePath(string filePath)
+    {
+        MyFilePath = filePath;
+        FileFromUrl = true;
+    }
+
+    private Dictionary<string, byte[]> loadedFiles = new();
+    private int maxAllowedFiles = 1;
+    private int maxSizeFile = 5000000; //5MB
+    private bool isLoading = false;
+    private int loadingStep = 0;
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles.Clear();
+        loadingStep = 0;
+
+        var numOfFiles = Math.Min(e.FileCount, maxAllowedFiles);
+        var i = 1;
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+
+                await using MemoryStream ms = new();
+                await file.OpenReadStream(maxSizeFile).CopyToAsync(ms);
+
+                loadedFiles.Add(file.Name, ms.ToArray());
+
+                loadingStep = (int)(((float)i / (float)numOfFiles) * 100f);
+                StateHasChanged();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            i++;
+        }
+
+        FileFromUrl = false;
+
+        isLoading = false;
+    }
+    #endregion
+
+}

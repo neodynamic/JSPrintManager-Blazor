@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSPMBlazorWASM", "JSPMBlazorWASM.csproj", "{2BBBB35F-CFA6-4916-8FB2-6067D8AD1E37}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BBBB35F-CFA6-4916-8FB2-6067D8AD1E37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BBBB35F-CFA6-4916-8FB2-6067D8AD1E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BBBB35F-CFA6-4916-8FB2-6067D8AD1E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BBBB35F-CFA6-4916-8FB2-6067D8AD1E37}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9A708547-4F6F-4027-8879-7439DFF8D378}
+	EndGlobalSection
+EndGlobal

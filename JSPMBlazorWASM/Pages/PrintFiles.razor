@@ -1,0 +1,229 @@
+﻿@page "/print-files"
+@using System
+@using System.IO
+@using System.Text
+
+@inject JSPrintManager JSPrintManager
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">
+            <i class="fa fa-file-image-o" />&nbsp;Print Images &amp; Docs
+        </h2>
+        <hr />
+    </div>
+</div>
+
+@if (JSPrintManager.Printers == null)
+{
+    <div class="spinner-border text-info" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <strong><em>Getting printers...</em></strong>
+}
+else
+{
+    <p><strong>Select an Installed Printer</strong></p>
+    <EditForm Model="@MyPrinter">
+        <InputSelect @bind-Value="MyPrinter.PrinterName" class="form-control form-control-sm">
+            @foreach (var p in JSPrintManager.Printers)
+                {
+                <option value="@p">@p</option>
+                }
+        </InputSelect>
+    </EditForm>
+
+    <div class="row">
+        <div class="col-md-12">
+            <EditForm Model="@MyCPJ">
+                <strong>Select the File(s) to print</strong>
+                <TabControl>
+                    <TabPage Text="Local Files">
+                        <br />
+                        <InputFile OnChange="@LoadFiles" multiple class="form-control-file" />
+                        <br />
+                        @if (isLoading)
+                        {
+                            <p><em><small>Loading files...</small></em></p>
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: @(loadingStep)%;" aria-valuenow="@(loadingStep)" aria-valuemin="0" aria-valuemax="100">@(loadingStep)%</div>
+                            </div>
+                        }
+                    </TabPage>
+                    <TabPage Text="File from URL">
+                        <br />
+                        URL File <strong>must include file extension!</strong>
+                        <div>
+                            <small>
+                                <strong>Predefined Samples:</strong>
+                            </small>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-light btn-sm" @onclick="@(() => SetFilePath("https://neodynamic.com/temp/LoremIpsum.pdf"))">
+                                <i class="fa fa-arrow-circle-down" /> LoremIpsum.pdf
+                            </button>
+                            &nbsp;&nbsp;
+                            <button type="button" class="btn btn-light btn-sm" @onclick="@(() => SetFilePath("https://neodynamic.com/temp/penguins300dpi.jpg"))">
+                                <i class="fa fa-arrow-circle-down" /> penguins300dpi.jpg
+                            </button>
+                        </div>
+                        <InputText Value="@MyFilePath" ValueExpression="@(() => MyFilePath)" ValueChanged="@SetFilePath" class="form-control form-control-sm text-monospace" />
+                    </TabPage>
+                </TabControl>
+            </EditForm>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <p>Print Job Trace</p>
+            <textarea class="terminal" readOnly @bind="JobStatusTrace" rows="10"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <div class="text-center">
+                <button class="btn btn-success btn-lg" @onclick="DoPrinting">
+                    <i class="fa fa-print" /> Print Now...
+                </button>
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        JSPrintManager.OnGetPrinters += () => StateHasChanged();
+
+        JSPrintManager.OnClientPrintJobStatusChanged += () =>
+        {
+            var jobStatusBuffer = JSPrintManager.ClientPrintJobStatusCache.Where(jobStatus => jobStatus.Id == MyCPJ.Id).ToArray();
+
+            var sb = new StringBuilder();
+            foreach (var entry in jobStatusBuffer)
+            {
+                sb.Append(entry.Data.ToString());
+                sb.Append("\n");
+            }
+            JobStatusTrace = sb.ToString();
+            StateHasChanged();
+        };
+
+        base.OnInitialized();
+    }
+
+    private string JobStatusTrace = "";
+
+    private ClientPrintJob MyCPJ { get; set; } = new();
+    private InstalledPrinter MyPrinter { get; set; } = new();
+
+    private void DoPrinting()
+    {
+        // gen unique id for tracking job status
+        MyCPJ.GenerateUniqueId();
+
+        // set target printer
+        MyCPJ.ClientPrinter = MyPrinter;
+        // set files...
+        var myPrintFile = new PrintFile();
+        if (FileFromUrl)
+        {
+            myPrintFile = CreatePrintFileFromExt(Path.GetExtension(MyFilePath));
+            myPrintFile.FileContentType = FileSourceType.URL;
+            myPrintFile.FileContent = MyFilePath;
+            myPrintFile.FileName = MyFilePath.Substring(MyFilePath.LastIndexOf('/') + 1);
+
+            MyCPJ.Files.Add(myPrintFile);
+        }
+        else
+        {
+            foreach (var fileEntry in loadedFiles)
+            {
+                myPrintFile = CreatePrintFileFromExt(Path.GetExtension(fileEntry.Key));
+                myPrintFile.FileContentType = FileSourceType.Base64;
+                myPrintFile.FileContent = fileEntry.Value;
+                myPrintFile.FileName = fileEntry.Key;
+
+                MyCPJ.Files.Add(myPrintFile);
+            }
+        }
+        // Send job to the client!
+        if (MyCPJ.Files.Count > 0)
+            JSPrintManager.SendClientPrintJob(MyCPJ);
+    }
+
+    private PrintFile CreatePrintFileFromExt(string ext)
+    {
+        if (ext == ".pdf")
+            return new PrintFilePDF();
+        else if (ext == ".txt")
+            return new PrintFileTXT();
+        else if (ext == ".tif")
+            return new PrintFileTIF();
+        else if (ext == ".doc" || ext == ".docx")
+            return new PrintFileDOC();
+        else if (ext == ".xls" || ext == ".xlsx")
+            return new PrintFileXLS();
+        else
+            return new PrintFile();
+    }
+
+    #region File Source Handling
+    private bool FileFromUrl = false;
+
+    private string MyFilePath { get; set; }
+
+    private void SetFilePath(string filePath)
+    {
+        MyFilePath = filePath;
+        FileFromUrl = true;
+    }
+
+    private Dictionary<string, byte[]> loadedFiles = new();
+    private int maxAllowedFiles = 5;
+    private int maxSizeFile = 5000000; //5MB
+    private bool isLoading = false;
+    private int loadingStep = 0;
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles.Clear();
+        loadingStep = 0;
+
+        var numOfFiles = Math.Min(e.FileCount, maxAllowedFiles);
+        var i = 1;
+
+        foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+        {
+            try
+            {
+
+                await using MemoryStream ms = new();
+                await file.OpenReadStream(maxSizeFile).CopyToAsync(ms);
+
+                loadedFiles.Add(file.Name, ms.ToArray());
+
+                loadingStep = (int)(((float)i / (float)numOfFiles) * 100f);
+                StateHasChanged();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            i++;
+        }
+
+        FileFromUrl = false;
+
+        isLoading = false;
+    }
+    #endregion
+}

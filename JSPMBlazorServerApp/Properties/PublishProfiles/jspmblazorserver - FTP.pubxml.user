@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAASGBxHGF1xEycXE1ZVubOygAAAAACAAAAAAAQZgAAAAEAACAAAAAyKQcLxDOwFEvg2s1LJTiMb5bEcRBQneEQwvYoaCnHuQAAAAAOgAAAAAIAACAAAABNxeiyPhb21iTW+Dwl5ndVeWQoV093u5plISErqufz/oAAAAAROjxp0fKrdLoZ+KakTsLbz9oRCjgD+vjrKNiRTy87CjFIiv6CvrRpcri0jPtqlqDavWhzXJZ7cMQBMCTrM/LOfvvhJqV525nHfsVSy+TmgyJ4OFbgogihou+PRD/+czpVLjQevd2FylHEDXXUY+ZXWdfnvcjGTlpZvzULXxlNjEAAAAATK19wSUzKgusgQ/yNUJtkeMDIMtwedeJLAwbHiUcmInEpD3ebTWqSdHEIb78Nf6iN08x97REsz6zEf50T0Gyf</EncryptedPassword>
+    <_PublishTargetUrl>ftp://waws-prod-dm1-135.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
+    <History>True|2021-07-01T18:58:35.0685921Z;False|2021-06-30T15:53:25.6475772-03:00;True|2021-06-30T11:30:36.1583627-03:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="appsettings.Development.json">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="appsettings.json">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="JSPMBlazorServerApp.deps.json">
+      <publishTime>07/01/2021 15:54:59</publishTime>
+    </File>
+    <File Include="JSPMBlazorServerApp.dll">
+      <publishTime>07/01/2021 15:54:54</publishTime>
+    </File>
+    <File Include="JSPMBlazorServerApp.exe">
+      <publishTime>07/01/2021 15:54:56</publishTime>
+    </File>
+    <File Include="JSPMBlazorServerApp.pdb">
+      <publishTime>07/01/2021 15:54:54</publishTime>
+    </File>
+    <File Include="JSPMBlazorServerApp.runtimeconfig.json">
+      <publishTime>06/30/2021 11:22:10</publishTime>
+    </File>
+    <File Include="JSPMBlazorServerApp.Views.dll">
+      <publishTime>07/01/2021 15:54:58</publishTime>
+    </File>
+    <File Include="JSPMBlazorServerApp.Views.pdb">
+      <publishTime>07/01/2021 15:54:58</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Authorization.dll">
+      <publishTime>04/23/2021 18:29:24</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Components.dll">
+      <publishTime>04/23/2021 18:28:38</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Components.Forms.dll">
+      <publishTime>04/23/2021 18:29:24</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Components.Web.dll">
+      <publishTime>04/23/2021 18:29:30</publishTime>
+    </File>
+    <File Include="Microsoft.AspNetCore.Metadata.dll">
+      <publishTime>04/23/2021 18:28:56</publishTime>
+    </File>
+    <File Include="Microsoft.Extensions.DependencyInjection.dll">
+      <publishTime>11/26/2020 01:59:12</publishTime>
+    </File>
+    <File Include="Microsoft.JSInterop.dll">
+      <publishTime>04/23/2021 18:28:54</publishTime>
+    </File>
+    <File Include="Neodynamic.Blazor.JSPrintManager.dll">
+      <publishTime>07/01/2021 15:53:57</publishTime>
+    </File>
+    <File Include="Neodynamic.Blazor.JSPrintManager.pdb">
+      <publishTime>07/01/2021 15:54:07</publishTime>
+    </File>
+    <File Include="System.IO.Pipelines.dll">
+      <publishTime>11/26/2020 02:01:10</publishTime>
+    </File>
+    <File Include="web.config">
+      <publishTime>07/01/2021 15:55:18</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap/bootstrap.min.css">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/bootstrap/bootstrap.min.css.map">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/FONT-LICENSE">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/css/open-iconic-bootstrap.min.css">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.eot">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.otf">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.svg">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.ttf">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/font/fonts/open-iconic.woff">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/ICON-LICENSE">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/open-iconic/README.md">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/css/site.css">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/favicon.ico">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/images/scanning.gif">
+      <publishTime>06/16/2021 10:16:43</publishTime>
+    </File>
+    <File Include="wwwroot/_content/Neodynamic.Blazor.JSPrintManager/JSPrintManagerBlazor.js">
+      <publishTime>06/30/2021 15:37:42</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
