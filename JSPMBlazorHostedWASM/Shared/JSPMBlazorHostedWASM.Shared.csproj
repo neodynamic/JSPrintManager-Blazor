@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="Neodynamic.Blazor.JSPrintManager" Version="4.0.0"/>
+    <PackageReference Include="Neodynamic.Blazor.JSPrintManager" Version="4.0.0"/>
   </ItemGroup>
 
   <ItemGroup>
