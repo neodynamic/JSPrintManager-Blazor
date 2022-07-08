@@ -1,4 +1,4 @@
-﻿@page "/printers-info"
+@page "/printers-info"
 @inject JSPrintManager JSPrintManager
 
     <div class="row">
@@ -24,6 +24,7 @@ else
     <table class="table table-sm">
         <thead class="thead-dark">
             <tr>
+                <th scope="col">Icon</th>
                 <th scope="col">Name</th>
                 <th scope="col">Port</th>
                 <th scope="col">XDPI</th>
@@ -42,64 +43,68 @@ else
 
             @foreach (var pi in JSPrintManager.PrintersInfo)
             {
-                <tr>
-                    <td>@pi.Name</td>
-                    <td>@pi.Port</td>
-                    <td>@pi.XDPI</td>
-                    <td>@pi.YDPI</td>
-                    <td>
-                        @if (pi.Default)
-                        {<span class="badge badge-success">&#10004;</span>}
-                        else
-                        {<span class="badge badge-danger">&#10006;</span>}
-                    </td>
-                    <td>
-                        @if (pi.IsLocal)
-                        {<span class="badge badge-success">&#10004;</span>}
-                        else
-                        {<span class="badge badge-danger">&#10006;</span>}
-                    </td>
-                    <td>
-                        @if (pi.IsNetwork)
-                        {<span class="badge badge-success">&#10004;</span>}
-                        else
-                        {<span class="badge badge-danger">&#10006;</span>}
-                    </td>
-                    <td>
-                        @if (pi.IsShared)
-                        {<span class="badge badge-success">&#10004;</span>}
-                        else
-                        {<span class="badge badge-danger">&#10006;</span>}
-                    </td>
-                    <td>
-                        @if (pi.Connected)
-                        {<span class="badge badge-success">&#10004;</span>}
-                        else
-                        {<span class="badge badge-danger">&#10006;</span>}
-                    </td>
-                    <td>
-                        @if (pi.BIDIEnabled)
-                        {<span class="badge badge-success">&#10004;</span>}
-                        else
-                        {<span class="badge badge-danger">&#10006;</span>}
-                    </td>
-                    <td>
-                        <select>
-                            @foreach (var tray in @pi.Trays)
-                            {
-                                <option>@tray</option>
-                            }
-                        </select>
-                    </td>
-                    <td>
-                        <select>
-                            @foreach (var paper in @pi.Papers)
-                            {
-                                <option>@paper</option>
-                            }
-                        </select>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @if (pi.Icon.Length > 0)
+                    {<img src="data:image/png;base64,@pi.Icon" />}
+                </td>
+                <td>@pi.Name</td>
+                <td>@pi.Port</td>
+                <td>@pi.XDPI</td>
+                <td>@pi.YDPI</td>
+                <td>
+                    @if (pi.Default)
+                    {<span class="badge badge-success">&#10004;</span>}
+                    else
+                    {<span class="badge badge-danger">&#10006;</span>}
+                </td>
+                <td>
+                    @if (pi.IsLocal)
+                    {<span class="badge badge-success">&#10004;</span>}
+                    else
+                    {<span class="badge badge-danger">&#10006;</span>}
+                </td>
+                <td>
+                    @if (pi.IsNetwork)
+                    {<span class="badge badge-success">&#10004;</span>}
+                    else
+                    {<span class="badge badge-danger">&#10006;</span>}
+                </td>
+                <td>
+                    @if (pi.IsShared)
+                    {<span class="badge badge-success">&#10004;</span>}
+                    else
+                    {<span class="badge badge-danger">&#10006;</span>}
+                </td>
+                <td>
+                    @if (pi.Connected)
+                    {<span class="badge badge-success">&#10004;</span>}
+                    else
+                    {<span class="badge badge-danger">&#10006;</span>}
+                </td>
+                <td>
+                    @if (pi.BIDIEnabled)
+                    {<span class="badge badge-success">&#10004;</span>}
+                    else
+                    {<span class="badge badge-danger">&#10006;</span>}
+                </td>
+                <td>
+                    <select>
+                        @foreach (var tray in @pi.Trays)
+                        {
+                            <option>@tray</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        @foreach (var paper in @pi.Papers)
+                        {
+                            <option>@paper</option>
+                        }
+                    </select>
+                </td>
+            </tr>
             }
 
 
