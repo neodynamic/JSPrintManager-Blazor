@@ -1,4 +1,4 @@
-﻿@page "/scan-docs"
+@page "/scan-docs"
 @using System
 @inject JSPrintManager JSPrintManager
 
@@ -29,7 +29,19 @@ else if (NumOfScannerDevices == 0)
     <div class="row">
         <div class="col-md-12">
             <div class="text-center">
-                <div class="alert alert-danger">No scanner devices were detected on this system.</div>
+                <div class="alert alert-danger">
+                    <div class="text-center">
+                        No scanner devices detected on this system.
+                        <h4>READ CAREFULLY</h4>
+                    </div>
+                    <p>
+                        If you have installed the JSPrintManager client app in a Windows 64-bit edition through our universal installer or the one specific for Win64 and your scanner does not provide a 64-bit TWAIN driver or it supports the TWAIN 1.x specification only then please, do the following:
+                    </p>
+                    <ul>
+                        <li>Uninstall current JSPrintManager app for 64-bit</li>
+                        <li><a href="https://www.neodynamic.com/downloads/jspm/">Download and install <strong>JSPrintManager app for 32-bit</strong></a> instead. The JSPrintManager app for 32-bit will detect not only those missing TWAIN devices but also any other WIA devices that might be available in your system.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -65,6 +77,27 @@ else
                                     <option value="@pm">@pm</option>
                                     }
                             </InputSelect>
+                            @if (MyCSJ.PixelMode == PixelMode.BlackAndWhite)
+                            {
+                                <label>Dither:</label>
+                                <InputSelect @bind-Value="MyCSJ.Dither" class="form-control form-control-sm">
+                                    @foreach (var pm in Enum.GetValues(typeof(Dither)))
+                                            {
+                                        <option value="@pm">@pm</option>
+                                            }
+                                </InputSelect>
+                                @if (MyCSJ.Dither == Dither.Threshold)
+                                {
+                                    <div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">Threshold:</span>
+                                            </div>
+                                            <InputNumber @bind-Value="MyCSJ.Threshold" class="form-control" aria-label="Threshold" aria-describedby="basic-addon1" placeholder="128" step="1" min="0" max="255" />
+                                        </div>
+                                    </div>
+                                }
+                            }
                         </div>
                         <div class="col-md-2">
                             <label>Image Format:</label>
@@ -74,6 +107,28 @@ else
                                     <option value="@imgFmt">@imgFmt</option>
                                     }
                             </InputSelect>
+                            @if (MyCSJ.ImageFormat == ScannerImageFormatOutput.JPG)
+                            {
+                                <div>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Quality:</span>
+                                        </div>
+                                        <InputNumber @bind-Value="MyCSJ.JpgCompressionQuality" class="form-control" aria-label="JPG Quality" aria-describedby="basic-addon1" placeholder="100" step="1" min="0" max="100" />
+                                    </div>
+                                </div>
+                            }
+                            @if (MyCSJ.ImageFormat == ScannerImageFormatOutput.PDF)
+                            {
+                                <div>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Title:</span>
+                                        </div>
+                                        <InputText @bind-Value="MyCSJ.PdfTitle" class="form-control" aria-label="PDF Title" aria-describedby="basic-addon1" placeholder="The title" />
+                                    </div>
+                                </div>
+                            }
                         </div>
                         <div class="col-md-3">
                             <span class="badge badge-info">Windows Only</span>
