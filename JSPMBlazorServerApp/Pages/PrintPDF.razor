@@ -263,7 +263,7 @@ else
             foreach (var fileEntry in loadedFiles)
             {
                 MyPdfFile.FileContentType = FileSourceType.Base64;
-                MyPdfFile.FileContent = fileEntry.Value;
+                MyPdfFile.FileContent = Convert.ToBase64String(fileEntry.Value);
                 MyPdfFile.FileName = fileEntry.Key;
             }
         }
