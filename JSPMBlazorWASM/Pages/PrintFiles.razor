@@ -148,7 +148,7 @@ else
             {
                 myPrintFile = CreatePrintFileFromExt(Path.GetExtension(fileEntry.Key));
                 myPrintFile.FileContentType = FileSourceType.Base64;
-                myPrintFile.FileContent = fileEntry.Value;
+                myPrintFile.FileContent = Convert.ToBase64String(fileEntry.Value);
                 myPrintFile.FileName = fileEntry.Key;
 
                 MyCPJ.Files.Add(myPrintFile);
