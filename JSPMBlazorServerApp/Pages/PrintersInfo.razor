@@ -34,9 +34,12 @@ else
                 <th scope="col">Network</th>
                 <th scope="col">Shared</th>
                 <th scope="col">Connected</th>
+                <th scope="col">Is Fax</th>
+                <th scope="col">Custom Paper Support</th>
                 <th scope="col">BIDI</th>
                 <th scope="col">Trays</th>
                 <th scope="col">Papers</th>
+                <th scope="col">Media Types</th>
             </tr>
         </thead>
         <tbody>
@@ -83,6 +86,18 @@ else
                     {<span class="badge badge-danger">&#10006;</span>}
                 </td>
                 <td>
+                    @if (pi.IsFax)
+                    {<span class="badge badge-success">&#10004;</span>}
+                    else
+                    {<span class="badge badge-danger">&#10006;</span>}
+                </td>
+                <td>
+                    @if (pi.CustomPaperSupport)
+                    {<span class="badge badge-success">&#10004;</span>}
+                    else
+                    {<span class="badge badge-danger">&#10006;</span>}
+                </td>
+                <td>
                     @if (pi.BIDIEnabled)
                     {<span class="badge badge-success">&#10004;</span>}
                     else
@@ -101,6 +116,14 @@ else
                         @foreach (var paper in @pi.Papers)
                         {
                             <option>@paper</option>
+                        }
+                    </select>
+                </td>
+                <td>
+                    <select>
+                        @foreach (var mt in @pi.MediaTypes)
+                        {
+                            <option>@mt</option>
                         }
                     </select>
                 </td>
