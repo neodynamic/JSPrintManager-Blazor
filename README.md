@@ -42,7 +42,10 @@ If the printer is installed in the client system through a Printer Driver, then 
 [Bidirectional Serial Port Communication support!](#How-to-send-write-receive-read-bidi-serial-port-data-from-Blazor) Send/Write & Receive/Read data strings to any RS-232, COM & TTY port available on the client system.
 
 ### BIDI TCP/IP Comm
-Bidirectional TCP/IP Communication support! Send/Write & Receive/Read data to any TCP Address and port reachable from the client system. The Address requires to be in the client's allow list!
+Bidirectional TCP Communication support! Send/Write & Receive/Read data strings to any TCP Address and port reachable from the client system. The Address requires to be in the client's allow list!
+
+### BIDI Bluetooth Comm
+Bidirectional Bluetooth Communication support! Send/Write & Receive/Read data strings to any BT Address and Channel reachable from the client system. The Address requires to be in the client's allow list!
 
 ### Get Printers Info & Status
 Besides getting the list of installed printers available in the client machine, you can also get further details like DPI Resolution, PortName, "Is Connected", "Is Shared", "Is Local", "Is Network", "Is Virtual or Real/Physical printer?", as well as the list of supported Papers and list of trays/bins!
