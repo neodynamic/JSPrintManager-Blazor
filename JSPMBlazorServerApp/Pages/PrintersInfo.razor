@@ -1,4 +1,4 @@
-@page "/printers-info"
+﻿@page "/printers-info"
 @inject JSPrintManager JSPrintManager
 
     <div class="row">
@@ -40,6 +40,7 @@ else
                 <th scope="col">Trays</th>
                 <th scope="col">Papers</th>
                 <th scope="col">Media Types</th>
+                <th scope="col">Manufacturer</th>
             </tr>
         </thead>
         <tbody>
@@ -127,6 +128,7 @@ else
                         }
                     </select>
                 </td>
+                <td>@pi.Manufacturer</td>
             </tr>
             }
 
