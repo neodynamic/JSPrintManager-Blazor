@@ -2,12 +2,12 @@
 
 ## Print Commands & Files, Manage Printers & Scan Docs from Blazor Apps
 
-**[JSPrintManager for Blazor](https://neodynamic.com/products/printing/js-print-manager/blazor)** is the most advanced solution for **Client-side Printing & Scanning** scenarios **designed to be used in any Blazor Server & WebAssembly projects!**
+**[JSPrintManager for Blazor](https://www.neodynamic.com/products/printing/js-print-manager/blazor)** is the most advanced solution for **Client-side Printing & Scanning** scenarios **designed to be used in any Blazor Server & WebAssembly projects!**
 
 By writing pure .NET C# code, **JSPrintManager for Blazor** allows you to _easily send raw data, text and native commands_ as well as _known file formats (like PDF, TIFF, TXT, DOC, XLS, JPG, PNG)_ to any printer installed or available at the client machine *without showing or displaying any print dialog box!*
 Scan Documents & Images is also supported!
 
-**[More details about JSPrintManager for Blazor...](https://neodynamic.com/products/printing/js-print-manager/blazor)**
+**[More details about JSPrintManager for Blazor...](https://www.neodynamic.com/products/printing/js-print-manager/blazor)**
 
 ## Features
 
@@ -46,6 +46,9 @@ Bidirectional TCP Communication support! Send/Write & Receive/Read data strings 
 
 ### BIDI Bluetooth Comm
 Bidirectional Bluetooth Communication support! Send/Write & Receive/Read data strings to any BT Address and Channel reachable from the client system. The Address requires to be in the client's allow list!
+
+### IPP Comm
+[IPP (Internet Printing Protocol) Communication support!](https://www.neodynamic.com/articles/How-to-send-request-IPP-internet-printing-protocol-from-Blazor) Send/Request IPP JSON messages to any IPP URI device and get IPP JSON response from the client system. The target IPP Device URI requires to be in the client's allow list!
 
 ### Get Printers Info & Status
 Besides getting the list of installed printers available in the client machine, you can also get further details like DPI Resolution, PortName, "Is Connected", "Is Shared", "Is Local", "Is Network", "Is Virtual or Real/Physical printer?", as well as the list of supported Papers and list of trays/bins!
