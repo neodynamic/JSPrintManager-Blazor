@@ -255,23 +255,26 @@ else
 
         JSPrintManager.OnClientScanJobStatusChanged += () =>
         {
-            var ScanningResult = JSPrintManager.ClientScanJobStatusCache.Where(jobStatus => jobStatus.Id == MyCSJ.Id).Last<ScanJobStatus>();
+            var ScanningResult = JSPrintManager.ClientScanJobStatusCache.Where(jobStatus => jobStatus.Id == MyCSJ.Id).LastOrDefault<ScanJobStatus>();
 
-            if (ScanningResult.IsError)
+            if (ScanningResult != null)
             {
-                ScanningState = 2;
-                LastError = ScanningResult.Data;
-            }
-            else if (ScanningResult.IsLast)
-            {
-                ScanningState = 0;
-            }
-            else
-            {
-                ScannedImages.Add(ScanningResult.Data);
-            }
+                if (ScanningResult.IsError)
+                {
+                    ScanningState = 2;
+                    LastError = ScanningResult.Data;
+                }
+                else if (ScanningResult.IsLast)
+                {
+                    ScanningState = 0;
+                }
+                else
+                {
+                    ScannedImages.Add(ScanningResult.Data);
+                }
 
-            StateHasChanged();
+                StateHasChanged();
+            }
         };
 
         base.OnInitialized();
