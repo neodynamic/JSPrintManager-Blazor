@@ -1,4 +1,4 @@
-@page "/printers-info"
+﻿@page "/printers-info"
 @inject JSPrintManager JSPrintManager
 
     <div class="row">
@@ -37,6 +37,8 @@ else
                 <th scope="col">BIDI</th>
                 <th scope="col">Trays</th>
                 <th scope="col">Papers</th>
+                <th scope="col">Media Types</th>
+                <th scope="col">Manufacturer</th>
             </tr>
         </thead>
         <tbody>
@@ -104,6 +106,15 @@ else
                         }
                     </select>
                 </td>
+                <td>
+                    <select>
+                        @foreach (var mt in @pi.MediaTypes)
+                        {
+                            <option>@mt</option>
+                        }
+                    </select>
+                </td>
+                <td>@pi.Manufacturer</td>
             </tr>
             }
 
@@ -122,6 +133,10 @@ else
     protected override void OnInitialized()
     {
         JSPrintManager.OnGetPrintersInfo += () => StateHasChanged();
+
+        if (JSPrintManager.Status == JSPMWSStatus.Open)
+            if (JSPrintManager.PrintersInfo == null)
+                JSPrintManager.TryGetPrintersInfo("", PrinterIcon.Large); //Get printers info...
 
         base.OnInitialized();
     }
