@@ -49,16 +49,7 @@
         if (firstRender)
         {
             JSPrintManager.OnStatusChanged += () =>
-            {
-                if (JSPrintManager.Status == JSPMWSStatus.Open)
-                {
-                    JSPrintManager.TryGetPrinters(); //Get printers...
-
-                    JSPrintManager.TryGetPrintersInfo("", PrinterIcon.Large); //Get printers info...
-
-                    JSPrintManager.TryGetScanners(); //Get scanners...
-                }
-
+            {                
                 StateHasChanged();
             };
 

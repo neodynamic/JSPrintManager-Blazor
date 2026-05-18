@@ -116,6 +116,10 @@ else
             StateHasChanged();
         };
 
+        if (JSPrintManager.Status == JSPMWSStatus.Open)
+            if (JSPrintManager.Printers == null)
+                JSPrintManager.TryGetPrinters(); //Get printers...
+
         base.OnInitialized();
     }
 

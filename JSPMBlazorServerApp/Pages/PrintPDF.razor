@@ -220,6 +220,10 @@ else
     {
         JSPrintManager.OnGetPrintersInfo += () => StateHasChanged();
 
+        if (JSPrintManager.Status == JSPMWSStatus.Open)
+            if (JSPrintManager.PrintersInfo == null)
+                JSPrintManager.TryGetPrintersInfo("", PrinterIcon.Large); //Get printers info...
+
         base.OnInitialized();
     }
 
@@ -247,6 +251,14 @@ else
         {
             MyPrinter.Duplex = useDriverDuplex ? Duplex.Default : Duplex.Simplex;
         }
+
+        /*
+        // How to map pdf pages to printer trays
+        var pageTrays = new List<PageTrayItem>();
+        pageTrays.Add(new PageTrayItem() { Page = 1, TrayName = "Manual Feed" });
+        pageTrays.Add(new PageTrayItem() { Page = 2, TrayName = "Tray 1" });
+        MyPrinter.PageTrays = pageTrays;
+        */
 
         // set target printer
         MyCPJ.ClientPrinter = MyPrinter;

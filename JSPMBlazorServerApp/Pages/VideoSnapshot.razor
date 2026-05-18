@@ -1,0 +1,268 @@
+﻿@page "/video-snapshot"
+@using System
+@inject JSPrintManager JSPrintManager
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">
+            <i class="fa fa-video-camera" />&nbsp;Video Snapshot
+        </h2>
+        <hr />
+    </div>
+</div>
+
+@if (NumOfVideoDevices == -1)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <div class="spinner-border text-info" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <strong><em>Getting video devices...</em></strong>
+            </div>
+        </div>
+    </div>
+}
+else if (NumOfVideoDevices == 0)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="text-center">
+                <div class="alert alert-danger">
+                    <div class="text-center">
+                        No video devices detected on this system.
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <EditForm Model="@MyCSJ">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Scanner:</label>
+
+                            <InputSelect @bind-Value="MyCSJ.VideoDeviceName" class="form-control form-control-sm">
+                                <option>Select a video device...</option>
+                                @foreach (var s in JSPrintManager.VideoDevices)
+                                    {
+                                    <option value="@s">@s</option>
+                                    }
+                            </InputSelect>
+
+                        </div>
+                        <div class="col-md-2">
+                            <label>Pixel Mode:</label>
+                            <InputSelect @bind-Value="MyCSJ.PixelMode" class="form-control form-control-sm">
+                                @foreach (var pm in Enum.GetValues(typeof(PixelMode)))
+                                    {
+                                    <option value="@pm">@pm</option>
+                                    }
+                            </InputSelect>
+                            @if (MyCSJ.PixelMode == PixelMode.BlackAndWhite)
+                            {
+                                <label>Dither:</label>
+                                <InputSelect @bind-Value="MyCSJ.Dither" class="form-control form-control-sm">
+                                    @foreach (var pm in Enum.GetValues(typeof(Dither)))
+                                            {
+                                        <option value="@pm">@pm</option>
+                                            }
+                                </InputSelect>
+                                @if (MyCSJ.Dither == Dither.Threshold)
+                                {
+                                    <div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1">Threshold:</span>
+                                            </div>
+                                            <InputNumber @bind-Value="MyCSJ.Threshold" class="form-control" aria-label="Threshold" aria-describedby="basic-addon1" placeholder="128" step="1" min="0" max="255" />
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="col-md-2">
+                            <label>Image Format:</label>
+                            <InputSelect @bind-Value="MyCSJ.ImageFormat" class="form-control form-control-sm">
+                                @foreach (var imgFmt in Enum.GetValues(typeof(ScannerImageFormatOutput)))
+                                    {
+                                    <option value="@imgFmt">@imgFmt</option>
+                                    }
+                            </InputSelect>
+                            @if (MyCSJ.ImageFormat == ScannerImageFormatOutput.JPG)
+                            {
+                                <div>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Quality:</span>
+                                        </div>
+                                        <InputNumber @bind-Value="MyCSJ.JpgCompressionQuality" class="form-control" aria-label="JPG Quality" aria-describedby="basic-addon1" placeholder="100" step="1" min="0" max="100" />
+                                    </div>
+                                </div>
+                            }
+                            @if (MyCSJ.ImageFormat == ScannerImageFormatOutput.PDF)
+                            {
+                                <div>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">Title:</span>
+                                        </div>
+                                        <InputText @bind-Value="MyCSJ.PdfTitle" class="form-control" aria-label="PDF Title" aria-describedby="basic-addon1" placeholder="The title" />
+                                    </div>
+                                </div>
+                            }
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br />
+                            <div class="text-center">
+                                <button class="btn btn-success btn-lg" @onclick="TakeSnapshot">
+                                    <i class="fa fa-video-camera" /> Take Snapshot...
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <br /><br />
+
+                    @if (ScanningState == 1)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <img src="/images/scanning.gif" />
+                                    <br />
+                                    <strong>Working...</strong>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (ScanningState == 2)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <div class="alert alert-danger"><strong>ERROR:</strong> @LastError</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else if (ScanningState == 0 && SnapshotImages.Count > 0)
+                    {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-secondary">
+                                    <div class="row">
+                                        <div class="col-md-12  text-center">
+                                            <img src="@(SnapshotImages[currentImageIndex])" style="width: 100%; height: auto" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </EditForm>
+        </div>
+    </div>
+
+}
+
+
+
+@code {
+
+
+    /* =====================================================================================
+
+    VERY IMPORTANT!!!
+
+    SignalR message limit is 32KB by default and scanning images that will be serialized to
+    Base64 string will require modifying that limitation. In this sample we have removed it
+    by setting the MaximumReceiveMessageSize prop to NULL in the Startup.cs file.
+
+    ===================================================================================== */
+
+
+    protected override void OnInitialized()
+    {
+
+        if (JSPrintManager.VideoDevices != null && JSPrintManager.VideoDevices.Length > 0)
+            NumOfVideoDevices = JSPrintManager.VideoDevices.Length;
+
+        JSPrintManager.OnGetVideoDevices += () =>
+        {
+
+            NumOfVideoDevices = 0;
+            if (JSPrintManager.VideoDevices != null && JSPrintManager.VideoDevices.Length > 0)
+                NumOfVideoDevices = JSPrintManager.VideoDevices.Length;
+
+            StateHasChanged();
+        };
+
+        JSPrintManager.OnClientVideoScanJobStatusChanged += () =>
+        {
+            var ScanningResult = JSPrintManager.ClientVideoScanJobStatusCache.Where(jobStatus => jobStatus.Id == MyCSJ.Id).LastOrDefault<ScanJobStatus>();
+
+            if (ScanningResult != null)
+            {
+                if (ScanningResult.IsError)
+                {
+                    ScanningState = 2;
+                    LastError = ScanningResult.Data;
+                }
+                else if (ScanningResult.IsLast)
+                {
+                    ScanningState = 0;
+                }
+                else
+                {
+                    SnapshotImages.Add(ScanningResult.Data);
+                }
+
+                StateHasChanged();
+            }
+        };
+
+        if (JSPrintManager.Status == JSPMWSStatus.Open)
+            if (JSPrintManager.VideoDevices == null)
+                JSPrintManager.TryGetVideoDevices(); //Get video devices...
+
+        base.OnInitialized();
+    }
+
+
+    private ClientVideoScanJob MyCSJ { get; set; } = new();
+
+    private void TakeSnapshot()
+    {
+        if (string.IsNullOrWhiteSpace(MyCSJ.VideoDeviceName)) return;
+
+        // Clean Video Scan Job Status cache...
+        JSPrintManager.ClientVideoScanJobStatusCache.Clear();
+        // Clean scanned images cache...
+        SnapshotImages.Clear();
+
+        // Set scanning state
+        ScanningState = 1;
+        StateHasChanged();
+
+        // gen unique id for tracking job status
+        MyCSJ.GenerateUniqueId();
+
+        // Send job to the client!
+        JSPrintManager.SendClientVideoScanJob(MyCSJ);
+    }
+
+    private int NumOfVideoDevices = -1;
+    private int ScanningState = 0; // 0 = finished, 1 = scanning, 2 = error
+    private int currentImageIndex = 0;
+    private List<string> SnapshotImages = new List<string>();
+    private string LastError = "";
+}

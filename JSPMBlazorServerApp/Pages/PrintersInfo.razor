@@ -148,6 +148,10 @@ else
     {
         JSPrintManager.OnGetPrintersInfo += () => StateHasChanged();
 
+        if (JSPrintManager.Status == JSPMWSStatus.Open)
+            if (JSPrintManager.PrintersInfo == null)
+                JSPrintManager.TryGetPrintersInfo("", PrinterIcon.Large); //Get printers info...
+
         base.OnInitialized();
     }
 
