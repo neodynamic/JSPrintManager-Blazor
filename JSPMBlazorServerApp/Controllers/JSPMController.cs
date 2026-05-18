@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Neodynamic.Blazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Neodynamic.Blazor;
-
-namespace JSPMBlazorServerApp.Controllers
+namespace JSPMBlazorHostedWASM.Server.Controllers
 {
     [AllowAnonymous]
     public class JSPMController : Controller
