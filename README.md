@@ -47,6 +47,12 @@ Bidirectional TCP Communication support! Send/Write & Receive/Read data strings 
 ### BIDI Bluetooth Comm
 Bidirectional Bluetooth Communication support! Send/Write & Receive/Read data strings to any BT Address and Channel reachable from the client system. The Address requires to be in the client's allow list!
 
+## BIDI USB Device Communication
+Bidirectional (BIDI) USB Device Communication support! Send/Write & Receive/Read data strings to any USB device available on the client system. 
+
+## BIDI HID Device Communication
+Bidirectional (BIDI) HID Device Communication support! Send/Write & Receive/Read data strings to any HID device available on the client system.
+
 ### IPP Comm
 [IPP (Internet Printing Protocol) Communication support!](https://www.neodynamic.com/articles/How-to-send-request-IPP-internet-printing-protocol-from-Blazor) Send/Request IPP JSON messages to any IPP URI device and get IPP JSON response from the client system. The target IPP Device URI requires to be in the client's allow list!
 
