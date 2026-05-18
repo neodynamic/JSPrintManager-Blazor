@@ -1,4 +1,4 @@
-@page "/scan-docs"
+﻿@page "/scan-docs"
 @using System
 @inject JSPrintManager JSPrintManager
 
@@ -131,8 +131,6 @@ else
                             }
                         </div>
                         <div class="col-md-3">
-                            <span class="badge badge-info">Windows Only</span>
-                            <br />
                             <label>
                                 Enable Duplex
                                 <InputCheckbox @bind-Value="MyCSJ.EnableDuplex" />
@@ -148,6 +146,13 @@ else
                                 </div>
                                 <InputNumber @bind-Value="MyCSJ.FeederCount" class="form-control" aria-label="Feeder Count" aria-describedby="basic-addon1" />
                             </div>
+                            <span class="badge badge-info">Windows Only</span>
+                            <br />
+                            <label>
+                                Decode Barcodes
+                                <InputCheckbox @bind-Value="MyCSJ.EnableDecodeBarcode" />
+                            </label>
+                            <br />
                             <label>
                                 Show UI
                                 <InputCheckbox @bind-Value="MyCSJ.ShowUI" />
@@ -276,6 +281,10 @@ else
                 StateHasChanged();
             }
         };
+
+        if (JSPrintManager.Status == JSPMWSStatus.Open)
+            if (JSPrintManager.Scanners == null)
+                JSPrintManager.TryGetScanners(); //Get scanners...
 
         base.OnInitialized();
     }
